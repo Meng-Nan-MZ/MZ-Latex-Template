@@ -1,0 +1,117 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/report-style}[2026/06/17 Chinese report style]
+
+\RequirePackage[
+  a4paper,
+  left=3.18cm,
+  right=3.18cm,
+  top=2.54cm,
+  bottom=2.54cm,
+  bindingoffset=0cm
+]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{subcaption}
+\RequirePackage{float}
+\RequirePackage{enumitem}
+\RequirePackage{etoolbox}
+\RequirePackage{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage{fancyhdr}
+\RequirePackage{tocloft}
+\RequirePackage{placeins}
+\RequirePackage{tikz}
+\RequirePackage{adjustbox}
+
+% Global document structure and numbering depth.
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+
+\usetikzlibrary{arrows.meta, shapes.geometric, positioning, fit, backgrounds}
+\graphicspath{{figures/}}
+\captionsetup{labelsep=space}
+
+\hypersetup{hidelinks}
+
+\ctexset{
+  contentsname = {\hfill 目\quad 录\hfill\null},
+  chapter = {
+    format = {\bfseries\zihao{3}\raggedright},
+    name = {},
+    number = {\chinese{chapter}},
+    aftername = {、},
+    beforeskip = 0pt,
+    afterskip = 1.2ex,
+  },
+  section = {
+    format = {\bfseries\zihao{4}\raggedright},
+  },
+  subsection = {
+    format = {\bfseries\normalsize\raggedright},
+    indent = 0pt,
+  }
+}
+
+% 目录样式微调：标题、缩进、点线和间距
+\renewcommand{\cfttoctitlefont}{\bfseries\zihao{3}}
+\renewcommand{\cftaftertoctitle}{}
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{1.2em}
+
+\renewcommand{\cftchapfont}{\bfseries\zihao{-4}}
+\renewcommand{\cftchappagefont}{\zihao{-4}}
+\renewcommand{\cftsecfont}{\zihao{-4}}
+\renewcommand{\cftsecpagefont}{\zihao{-4}}
+\renewcommand{\cftsubsecfont}{\zihao{-4}}
+\renewcommand{\cftsubsecpagefont}{\zihao{-4}}
+
+\cftsetindents{chapter}{0em}{2.2em}
+\cftsetindents{section}{2.2em}{2.8em}
+\cftsetindents{subsection}{5.0em}{3.4em}
+
+\renewcommand{\cftdotsep}{1.8}
+\setlength{\cftbeforechapskip}{0.35em}
+\setlength{\cftbeforesecskip}{0.2em}
+\setlength{\cftbeforesubsecskip}{0.1em}
+
+\makeatletter
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
+\renewcommand{\thesubparagraph}{\theparagraph.\arabic{subparagraph}}
+
+\renewcommand\subsubsection{%
+  \@startsection{subsubsection}{3}{0pt}%
+  {1.0ex \@plus .2ex \@minus .2ex}%
+  {1.0ex}%
+  {\normalfont\normalsize\bfseries}%
+}
+
+\renewcommand\paragraph[1]{%
+  \par\vspace{1.0ex \@plus .2ex \@minus .2ex}%
+  \refstepcounter{paragraph}%
+  \noindent{\normalfont\normalsize\bfseries\theparagraph\quad #1}\par\nobreak
+  \vspace{1.0ex}%
+}
+
+\renewcommand\subparagraph[1]{%
+  \par\vspace{1.0ex \@plus .2ex \@minus .2ex}%
+  \refstepcounter{subparagraph}%
+  \noindent{\normalfont\normalsize\bfseries\thesubparagraph\quad #1}\par\nobreak
+  \vspace{1.0ex}%
+}
+\makeatother
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.3em}
+\setlist[itemize]{itemsep=0.3em, topsep=0.3em}
+\setlist[enumerate]{itemsep=0.3em, topsep=0.3em}
+
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}

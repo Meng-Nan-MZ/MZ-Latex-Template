@@ -1,0 +1,55 @@
+\AtBeginDocument{
+  %第一页
+  \newpage
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{3cm}
+    {\zihao{2}\bfseries 空天高可靠嵌入式处理器操作系统测试及} \\
+    \vspace{0.4cm}
+    {\zihao{2}\bfseries RTOS通用软件开发测试报告} \\
+    \vspace{0.8cm}
+    \rule{0.85\textwidth}{1pt}
+    \vfill
+    {\zihao{3} 共 \quad 页}
+    \vfill
+    {\zihao{3}\bfseries 西安电子科技大学}
+    \vspace{2cm}
+  \end{center}
+  \clearpage
+
+  % 第二页
+  \thispagestyle{empty}
+  \vspace*{1.65cm}
+  \begin{center}
+    \renewcommand{\arraystretch}{1.55}
+    \setlength{\tabcolsep}{4pt}
+    \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+    \newcommand{\tallrow}{\rule{0pt}{0.88cm}}
+    \makebox[\textwidth][c]{%
+    \begin{tabular}{|C{2.6cm}|C{3.6cm}|C{3.6cm}|C{3.6cm}|}
+    \hline
+    \tallrow 名 \quad 称 & \multicolumn{3}{C{10.8cm}|}{空天高可靠嵌入式处理器操作系统测试及RTOS通用软件开发测试报告} \\ \hline
+    \tallrow 合同编号 & \multicolumn{3}{C{10.8cm}|}{} \\ \hline
+    \tallrow 版本号 & \multicolumn{3}{C{10.8cm}|}{V1.0} \\ \hline
+    \multicolumn{4}{|c|}{\tallrow 文 \quad 件 \quad 签 \quad 署} \\ \hline
+    \tallrow 批 \quad 准 & \multicolumn{3}{C{10.8cm}|}{} \\ \hline
+
+    \tallrow & \multicolumn{2}{C{7.2cm}|}{签 \quad 署} & 日 \quad 期 \\ \hline
+    \tallrow 编 \quad 写 & \multicolumn{2}{C{7.2cm}|}{} & \\ \hline
+    \tallrow 校 \quad 对 & \multicolumn{2}{C{7.2cm}|}{} & \\ \hline
+    \tallrow 审 \quad 核 & \multicolumn{2}{C{7.2cm}|}{} & \\ \hline
+    \tallrow 标 \quad 审 & \multicolumn{2}{C{7.2cm}|}{} & \\ \hline
+
+    \multirow{6}{*}{会 \quad 签}
+    & \tallrow 姓 \quad 名 & 部 \quad 门 & 日 \quad 期 \\ \cline{2-4}
+    & \tallrow & & \\ \cline{2-4}
+    & \tallrow & & \\ \cline{2-4}
+    & \tallrow & & \\ \cline{2-4}
+    & \tallrow & & \\ \cline{2-4}
+    & \tallrow & & \\ \hline
+
+    \end{tabular}
+    }
+  \end{center}
+  \clearpage
+}
