@@ -22,6 +22,8 @@
 \RequirePackage{etoolbox}
 \RequirePackage{hyperref}
 \RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage[most]{tcolorbox}
 \RequirePackage{fancyhdr}
 \RequirePackage{tocloft}
 \RequirePackage{placeins}
@@ -37,6 +39,60 @@
 \captionsetup{labelsep=space}
 
 \hypersetup{hidelinks}
+
+% Code blocks for C examples in technical reports.
+% The color palette follows the Visual Studio Classic light theme.
+\definecolor{mzCodeBg}{HTML}{FFFFFF}
+\definecolor{mzCodeFrame}{HTML}{D0D7DE}
+\definecolor{mzCodeTitle}{HTML}{EEF2F6}
+\definecolor{mzCodeKeyword}{HTML}{0000FF}
+\definecolor{mzCodeComment}{HTML}{008000}
+\definecolor{mzCodeString}{HTML}{A31515}
+\definecolor{mzCodeNumber}{HTML}{6A737D}
+\IfFontExistsTF{Consolas}
+  {\newfontfamily\mzCodeFont{Consolas}[Scale=MatchLowercase]}
+  {\newcommand{\mzCodeFont}{\ttfamily}}
+
+\lstdefinestyle{mz-c}{
+  language=C,
+  basicstyle=\mzCodeFont\small,
+  keywordstyle=\color{mzCodeKeyword},
+  directivestyle=\color{mzCodeKeyword},
+  commentstyle=\color{mzCodeComment},
+  stringstyle=\color{mzCodeString},
+  morekeywords={bool,true,false,uint8_t,uint16_t,uint32_t,int8_t,int16_t,int32_t,size_t},
+  numbers=left,
+  numberstyle=\scriptsize\color{mzCodeNumber},
+  stepnumber=1,
+  numbersep=10pt,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=false,
+  tabsize=2,
+  columns=fullflexible,
+  keepspaces=true,
+  upquote=true
+}
+
+\newtcblisting{cbox}[2][]{
+  enhanced,
+  breakable,
+  colback=mzCodeBg,
+  colframe=mzCodeFrame,
+  coltitle=black,
+  colbacktitle=mzCodeTitle,
+  fonttitle=\bfseries,
+  title={#2},
+  arc=2pt,
+  boxrule=0.5pt,
+  left=7mm,
+  right=1mm,
+  top=1mm,
+  bottom=1mm,
+  listing only,
+  listing options={style=mz-c},
+  #1
+}
 
 \ctexset{
   contentsname = {\hfill 目\quad 录\hfill\null},

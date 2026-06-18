@@ -20,3 +20,40 @@
 \subparagraph{五级标题示例}
 这里是一段五级标题下的示例正文，用于观察五级标题的编号和排版效果。
 
+\section{C语言代码展示示例}
+在报告中解释 C 语言实现时，可以使用预置的 \verb|cbox| 环境。该环境采用接近 Visual Studio Classic 的配色，自动提供标题、行号、关键字高亮和长行换行，适合放置函数、结构体定义或关键算法片段。
+
+\begin{cbox}{按键消抖状态机示例}
+#include <stdint.h>
+#include <stdbool.h>
+
+#define KEY_STABLE_TICKS  5U
+
+typedef enum {
+  KEY_RELEASED = 0,
+  KEY_PRESSED
+} key_state_t;
+
+bool key_update(bool raw_level)
+{
+  static key_state_t state = KEY_RELEASED;
+  static uint8_t stable_count = 0U;
+
+  if (raw_level == (state == KEY_PRESSED)) {
+    stable_count = 0U;
+    return false;
+  }
+
+  if (++stable_count >= KEY_STABLE_TICKS) {
+    state = raw_level ? KEY_PRESSED : KEY_RELEASED;
+    stable_count = 0U;
+    return true;
+  }
+
+  return false;
+}
+\end{cbox}
+
+如果需要给代码块增加交叉引用标签，可以在 \verb|cbox| 的可选参数中设置 \verb|label|。
+
+另一种方案是使用 minted 包调用 Pygments，并选择 vs 主题。它的效果更接近真实编辑器，但依赖外部 Python 环境，编译时通常还需要开启 shell escape。当前模板使用 listings 直接定义样式，便于用普通 XeLaTeX 编译。
