@@ -23,6 +23,19 @@ xelatex -interaction=nonstopmode -halt-on-error -output-directory=output main.te
 
 The second run refreshes the table of contents and cross references.
 
+## Heading levels
+
+This project uses the LaTeX command level as the document heading level:
+
+- `\chapter{...}`: 一级标题
+- `\section{...}`: 二级标题
+- `\subsection{...}`: 三级标题
+- `\subsubsection{...}`: 四级标题
+- `\paragraph{...}`: 五级标题
+- `\subparagraph{...}`: 六级标题
+
+When importing content from Word, map Word headings to these LaTeX levels by document meaning. If Word styling conflicts with this template, keep the LaTeX template formatting.
+
 ## Overleaf
 
 Set the compiler to `XeLaTeX`.
