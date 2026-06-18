@@ -174,11 +174,12 @@
 \definecolor{mzTableStripe}{HTML}{F7F9FB}
 \definecolor{mzTableRule}{HTML}{8A97A6}
 \newenvironment{mzTable}{%
+  \par\addvspace{0.9\baselineskip}%
   \begingroup
   \scriptsize
   \setlength{\tabcolsep}{3pt}%
   \renewcommand{\arraystretch}{1.22}%
-  \setlength{\LTpre}{0.45em}%
+  \setlength{\LTpre}{0pt}%
   \setlength{\LTpost}{0.65em}%
   \arrayrulecolor{mzTableRule}%
   \rowcolors{2}{mzTableStripe}{white}%
@@ -186,6 +187,7 @@
   \rowcolors{2}{}{}%
   \arrayrulecolor{black}%
   \endgroup
+  \par\addvspace{0.25\baselineskip}%
 }
 
 % 测试用例块排版工具。
