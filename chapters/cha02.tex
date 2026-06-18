@@ -65,28 +65,20 @@
 \end{figure}
 
 \subsection{表格示例}
-表~\ref{tab:test-case-example} 展示了三线表、多列合并和多行合并的效果，适合测试报告中的用例统计或结果汇总。
+表~\ref{tab:test-case-example} 展示了正式报告网格表、多列合并和多行合并的效果，适合测试报告中的用例统计或结果汇总。
 
-\begin{table}[H]
-  \centering
-  \caption{测试用例统计表示例}
-  \label{tab:test-case-example}
-  \begin{tabular}{llccc}
-    \toprule
-    测试阶段 & 测试类别 & 用例数量 & 通过数量 & 通过率 \\
-    \midrule
-    \multirow{2}{*}{功能验证}
-      & 基础读写 & 12 & 12 & 100\% \\
-      & 目录操作 & 8 & 8 & 100\% \\
-    \midrule
-    \multirow{2}{*}{可靠性验证}
-      & 异常断电 & 10 & 10 & 100\% \\
-      & 长时间运行 & 6 & 6 & 100\% \\
-    \midrule
-    \multicolumn{2}{r}{合计} & 36 & 36 & 100\% \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+\begin{mzTable}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.24\textwidth}|>{\centering\arraybackslash}p{0.14\textwidth}|>{\centering\arraybackslash}p{0.14\textwidth}|>{\centering\arraybackslash}p{0.14\textwidth}|}
+\caption{测试用例统计表示例}\label{tab:test-case-example}\\
+\hline
+测试阶段 & 测试类别 & 用例数量 & 通过数量 & 通过率 \\ \hline
+\multirow{2}{*}{功能验证} & 基础读写 & 12 & 12 & 100\% \\ \cline{2-5}
+ & 目录操作 & 8 & 8 & 100\% \\ \hline
+\multirow{2}{*}{可靠性验证} & 异常断电 & 10 & 10 & 100\% \\ \cline{2-5}
+ & 长时间运行 & 6 & 6 & 100\% \\ \hline
+\multicolumn{2}{|r|}{合计} & 36 & 36 & 100\% \\ \hline
+\end{longtable}
+\end{mzTable}
 
 \section{其他常用功能示例}
 

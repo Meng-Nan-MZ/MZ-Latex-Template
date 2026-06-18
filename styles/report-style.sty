@@ -31,13 +31,17 @@
 \RequirePackage{tikz}
 \RequirePackage{adjustbox}
 
+% Keep fonts aligned with the Overleaf XeLaTeX project setting.
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}[AutoFakeBold=2.5, AutoFakeSlant=0.2]
+
 % Global document structure and numbering depth.
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{5}
 
 \usetikzlibrary{arrows.meta, shapes.geometric, positioning, fit, backgrounds}
 \graphicspath{{figures/}}
-\captionsetup{labelsep=space}
+\captionsetup{labelsep=space, skip=0.25em}
 
 \hypersetup{hidelinks}
 
@@ -103,14 +107,18 @@
     number = {\chinese{chapter}},
     aftername = {、},
     beforeskip = 0pt,
-    afterskip = 1.2ex,
+    afterskip = 0.8ex,
   },
   section = {
     format = {\bfseries\zihao{4}\raggedright},
+    beforeskip = 1.0ex,
+    afterskip = 0.55ex,
   },
   subsection = {
     format = {\bfseries\normalsize\raggedright},
     indent = 0pt,
+    beforeskip = 0.9ex,
+    afterskip = 0.45ex,
   }
 }
 
@@ -143,51 +151,74 @@
 
 \renewcommand\subsubsection{%
   \@startsection{subsubsection}{3}{0pt}%
-  {1.0ex \@plus .2ex \@minus .2ex}%
-  {1.0ex}%
+  {0.7ex \@plus .15ex \@minus .15ex}%
+  {0.45ex}%
   {\normalfont\normalsize\bfseries}%
 }
 
 \renewcommand\paragraph[1]{%
-  \par\vspace{1.0ex \@plus .2ex \@minus .2ex}%
+  \par\vspace{0.55ex \@plus .15ex \@minus .15ex}%
   \refstepcounter{paragraph}%
   \noindent{\normalfont\normalsize\bfseries\theparagraph\quad #1}\par\nobreak
-  \vspace{1.0ex}%
+  \vspace{0.35ex}%
 }
 
 \renewcommand\subparagraph[1]{%
-  \par\vspace{1.0ex \@plus .2ex \@minus .2ex}%
+  \par\vspace{0.45ex \@plus .15ex \@minus .15ex}%
   \refstepcounter{subparagraph}%
   \noindent{\normalfont\normalsize\bfseries\thesubparagraph\quad #1}\par\nobreak
-  \vspace{1.0ex}%
+  \vspace{0.3ex}%
 }
 \makeatother
 
 \setlength{\parindent}{2em}
-\setlength{\parskip}{0.3em}
-\setlist[itemize]{itemsep=0.3em, topsep=0.3em}
-\setlist[enumerate]{itemsep=0.3em, topsep=0.3em}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{itemsep=0pt, topsep=0.15em, parsep=0pt, partopsep=0pt}
+\setlist[enumerate]{itemsep=0pt, topsep=0.15em, parsep=0pt, partopsep=0pt}
 
 % 报告表格统一样式。
-% 用途：替代 Word 导入后常见的全边框表格，使用 booktabs 三线表、
-% 较紧凑的字号和行距，并为长表保留稳定的跨页排版。
-\definecolor{mzTableStripe}{HTML}{F7F9FB}
-\definecolor{mzTableRule}{HTML}{8A97A6}
+% 用途：接近旧版验收报告表格观感，使用黑色实线、紧凑行距和稳定跨页排版。
+\definecolor{mzTableRule}{HTML}{000000}
 \newenvironment{mzTable}{%
-  \par\addvspace{0.9\baselineskip}%
+  \par\addvspace{0.45\baselineskip}%
   \begingroup
-  \scriptsize
-  \setlength{\tabcolsep}{3pt}%
-  \renewcommand{\arraystretch}{1.22}%
+  \zihao{5}
+  \setlength{\tabcolsep}{4pt}%
+  \renewcommand{\arraystretch}{1.06}%
   \setlength{\LTpre}{0pt}%
-  \setlength{\LTpost}{0.65em}%
+  \setlength{\LTpost}{0.35em}%
+  \setlength{\aboverulesep}{0pt}%
+  \setlength{\belowrulesep}{0pt}%
+  \setlength{\arrayrulewidth}{0.4pt}%
+  \setlength{\heavyrulewidth}{0.5pt}%
+  \setlength{\lightrulewidth}{0.4pt}%
+  \setlength{\cmidrulewidth}{0.4pt}%
   \arrayrulecolor{mzTableRule}%
-  \rowcolors{2}{mzTableStripe}{white}%
 }{%
-  \rowcolors{2}{}{}%
   \arrayrulecolor{black}%
   \endgroup
-  \par\addvspace{0.25\baselineskip}%
+  \par\addvspace{0.15\baselineskip}%
+}
+
+\newenvironment{mzCompactTable}{%
+  \par\addvspace{0.35\baselineskip}%
+  \begingroup
+  \zihao{-5}
+  \setlength{\tabcolsep}{2.6pt}%
+  \renewcommand{\arraystretch}{0.98}%
+  \setlength{\LTpre}{0pt}%
+  \setlength{\LTpost}{0.25em}%
+  \setlength{\aboverulesep}{0pt}%
+  \setlength{\belowrulesep}{0pt}%
+  \setlength{\arrayrulewidth}{0.4pt}%
+  \setlength{\heavyrulewidth}{0.5pt}%
+  \setlength{\lightrulewidth}{0.4pt}%
+  \setlength{\cmidrulewidth}{0.4pt}%
+  \arrayrulecolor{mzTableRule}%
+}{%
+  \arrayrulecolor{black}%
+  \endgroup
+  \par\addvspace{0.12\baselineskip}%
 }
 
 % 测试用例块排版工具。
@@ -203,11 +234,11 @@
 %   测试通过。
 %   \end{mzTestCaseBlock}
 %
-% 小标题格式：显示为“黑色方块 + 箭头 + 加粗标题”。
+% 小标题格式：显示为“黑色方块 + 空白间距 + 加粗标题”。
 \newcommand{\mzTestBlockTitle}[1]{%
-  \par\addvspace{0.45\baselineskip}%
-  \noindent\makebox[2.0em][l]{\raisebox{0.12ex}{\rule{0.72em}{0.72em}}\,\(\to\)}%
-  {\bfseries #1}\par\nobreak\vspace{0.12\baselineskip}%
+  \par\addvspace{0.18\baselineskip}%
+  \noindent\makebox[1.65em][l]{\raisebox{0.12ex}{\rule{0.68em}{0.68em}}}%
+  {\bfseries #1}\par\nobreak\vspace{0.02\baselineskip}%
 }
 
 % 半角直双引号：避免正文中的普通 " 被字体排成中文/弯引号。
@@ -237,8 +268,8 @@
     labelsep=0.25em,
     leftmargin=!,
     align=left,
-    itemsep=0.12\baselineskip,
-    topsep=0.12\baselineskip,
+    itemsep=0pt,
+    topsep=0.05\baselineskip,
     parsep=0pt,
     partopsep=0pt
   }%
