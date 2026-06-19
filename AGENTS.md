@@ -32,10 +32,11 @@ xelatex -interaction=nonstopmode -halt-on-error -output-directory=output main.te
 - Global packages and reusable environments belong in `styles/report-style.sty`.
 - Chapter examples and document content belong in `chapters/*.tex`.
 - The template uses `ctexrep` with XeLaTeX.
-- Chinese body text is configured globally in `styles/report-style.sty` as SimSun/宋体. Keep this unless the user requests another Chinese font.
-- English/Latin text is configured globally in `styles/report-style.sty` and should remain Times New Roman unless the user requests another font.
+- Chinese body text is configured globally in `styles/report-style.sty` as SimSun/宋体. English/Latin text should remain Times New Roman unless the user requests another font.
+- Font loading is bundled-first: if `fonts/simsun.ttc`, `fonts/times.ttf`, `fonts/timesbd.ttf`, `fonts/timesi.ttf`, and `fonts/timesbi.ttf` exist, XeLaTeX loads those files directly. This is the preferred way to keep local and Overleaf output identical.
+- If bundled font files are absent, the style falls back to system font names for local editing. That fallback may fail on Overleaf when the system font is not installed there.
+- Do not rename bundled font files unless `styles/report-style.sty` and any project export scripts are updated together.
 - The current report style should stay close to the user's old acceptance-report template: compact body spacing, compact heading spacing, dense test-case blocks, and formal black-rule tables.
-- On Overleaf, ensure licensed system fonts used by the project are available or uploaded with the project if Overleaf cannot resolve them directly.
 - Prefer packages that compile without shell escape for default template features.
 - Heading levels are defined by LaTeX command level: `\chapter` is 一级标题, `\section` is 二级标题, `\subsection` is 三级标题, `\subsubsection` is 四级标题, `\paragraph` is 五级标题, and `\subparagraph` is 六级标题.
 

@@ -31,9 +31,37 @@
 \RequirePackage{tikz}
 \RequirePackage{adjustbox}
 
-% Keep fonts aligned with the Overleaf XeLaTeX project setting.
-\setmainfont{Times New Roman}
-\setCJKmainfont{SimSun}[AutoFakeBold=2.5, AutoFakeSlant=0.2]
+% Font loading order:
+% 1. Use bundled files under fonts/ when present. This keeps local and
+%    Overleaf output identical because both engines read the same files.
+% 2. Fall back to system font names for local editing before fonts are bundled.
+\newcommand{\mzUseSystemTimes}{\setmainfont{Times New Roman}}
+\newcommand{\mzUseBundledTimes}{%
+  \setmainfont[
+    Path = fonts/,
+    UprightFont = times.ttf,
+    BoldFont = timesbd.ttf,
+    ItalicFont = timesi.ttf,
+    BoldItalicFont = timesbi.ttf
+  ]{times.ttf}%
+}
+\IfFileExists{fonts/times.ttf}{%
+  \IfFileExists{fonts/timesbd.ttf}{%
+    \IfFileExists{fonts/timesi.ttf}{%
+      \IfFileExists{fonts/timesbi.ttf}{\mzUseBundledTimes}{\mzUseSystemTimes}%
+    }{\mzUseSystemTimes}%
+  }{\mzUseSystemTimes}%
+}{\mzUseSystemTimes}
+
+\IfFileExists{fonts/simsun.ttc}{%
+  \setCJKmainfont[
+    Path = fonts/,
+    AutoFakeBold = 2.5,
+    AutoFakeSlant = 0.2
+  ]{simsun.ttc}%
+}{%
+  \setCJKmainfont{SimSun}[AutoFakeBold=2.5, AutoFakeSlant=0.2]%
+}
 
 % Global document structure and numbering depth.
 \setcounter{tocdepth}{3}
